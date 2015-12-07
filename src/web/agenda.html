@@ -28,27 +28,7 @@
 		<script src="services/agendaService.js"></script>
 		<script src="controllers/agendaController.js"></script>
 			<script type="text/javascript">
-		angular.module("myApp", []);
-		angular.module("listaProfessores").controller("listaProfessoresController", function($scope){
-			$scope.app = "Lista Professores";
-			$scope.professores = [
-								{id:"", nome: ""},
-
-			];
-			
-				
-			];
-			$scope.adicionarProfessores = function (fetchAllProfessor) {
-
-
-				$scope.professores.push(angular.copy(professores)); // copia para a lista
-
-
-			};
-
-
-			};
-		});
+	
 	</script>
 	</head>
 	<body class="ng-cloak">
@@ -80,15 +60,15 @@
               <div class="panel-heading"><span class="lead">Registro de Agenda </span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      A SER IMPLEMENTADO
-                      <div class="row">
-                          <div ng-controller="listaProfessoresController" class="form-actions floatRight">
+                      
+                      <div class="row" ng-controller="AgendaController as ctrl" class="form-actions floatRight">
+                          
                            <select class= "form-control" ng-model="ListaProfessores.professor" ng-options="professor.nome for professor in professores">
 
 							<option value=""> Selecione um Professor </option>
 												
 							</select>
-							</div>
+						
 							
 							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
 
@@ -100,10 +80,10 @@
 							<option value=""> Selecione um Periodo </option>
 												
 							</select>
-							<div ng-controller="AgendaController as ctrl" class="form-actions floatRight">
+							
                               <input type="submit"  value="{{!ctrl.Agenda.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar Formulario</button>
-                          </div>
+                          
                       </div>
                   </form>
               </div>

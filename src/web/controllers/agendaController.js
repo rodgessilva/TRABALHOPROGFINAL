@@ -87,5 +87,25 @@ App.controller('AgendaController', ['$scope', 'AgendaService', function($scope, 
       self.Agenda={id:null,nome:''};
       $scope.myForm.$setPristine(); //reset Form
   };
+	angular.module("listaProfessores").controller("listaProfessoresController", function($scope){
+		$scope.app = "Lista Professores";
+		$scope.professores = [
+							{id:"", nome: ""},
+
+		];
+		
+			
+		];
+		$scope.adicionarProfessores = function (fetchAllProfessor) {
+
+
+			$scope.professores.push(angular.copy(professores)); // copia para a lista
+
+
+		};
+
+
+		};
+	});
 
 }]);
