@@ -1,0 +1,107 @@
+<html ng-app="myApp">
+	<head>
+		<title>Trabalho Habibs - Disciplina</title>
+		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="libs/bootstrap/custom.css">
+		<script src="libs/angularjs/angular.min.js"></script>
+		<script src="app.js"></script>
+		<script src="services/disciplinaService.js"></script>
+		<script src="controllers/disciplinaController.js"></script>
+		<style type="text/css">
+	 .jumbotron{
+	 	width: auto;
+	 	text-align: center;
+	 	margin-top: 20px;
+	 	margin-left: auto;
+	 	margin-right: auto;
+	 }
+	 .table{
+	 	margin-top: 20px;
+	 }
+	 .form-control{
+	 	margin-bottom: 5px;
+	 }
+	 .selecionado{
+	 	background-color:#FFFF00;
+	 }
+	</style>
+	</head>
+	<body class="ng-cloak">
+		<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top"> 
+		<nav class="navbar navbar-default navbar-fixed-top">  
+			<div class="container-fluid">
+				<div class="navbar-header"> 
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false"> 
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="icon-bar"></span> </button> 
+					<a class="navbar-brand" href="index.html">Home</a>
+		 		</div>
+		  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6"> 
+		  			<ul class="nav navbar-nav"> 
+		  				<li><a href="coord.html">Coordenador</a></li>
+		  				<li><a href="prof.html">Professores</a></li>
+		   				<li class="active"><a href="disc.html">Disciplinas</a></li>
+		   				<li><a href="fases.html">Fases</a></li>
+		   				<li><a href="turmas.html">Turmas</a></li>
+		   				<li><a href="agenda.html">Agenda</a></li>
+		   		     </ul> 
+		     	</div> 
+		    </div>
+        </nav> 
+    </div>
+		<div class="jumbotron" class="generic-container" ng-controller="DisciplinasController as ctrl">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">Registro de Disciplinas </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                      <input type="hidden" ng-model="ctrl.Disciplinas.id" />
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="file">Nome</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Disciplinas.nome" name="nome" class="username form-control input-sm" placeholder="Insira o nome" required ng-minlength="3"/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.nome.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.nome.$error.minlength">Minimum length required is 3</span>
+                                      <span ng-show="myForm.nome.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-actions floatRight">
+                              <input type="submit"  value="{{!ctrl.Disciplinas.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar Formulario</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">Lista de Disciplinas </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>ID.</th>
+                              <th>Nome</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.Disciplinases">
+                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.nome"></span></td>
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remover</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+	</body>
+</html>

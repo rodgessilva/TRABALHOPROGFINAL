@@ -1,0 +1,135 @@
+<html ng-app="myApp">
+	<head>
+		<title>Trabalho Habibs - Agenda</title>
+		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="libs/bootstrap/custom.css">
+        	<style type="text/css">
+	 .jumbotron{
+	 	width: auto;
+	 	text-align: center;
+	 	margin-top: 20px;
+	 	margin-left: auto;
+	 	margin-right: auto;
+	 }
+	 .table{
+	 	margin-top: 20px;
+	 }
+	 .form-control{
+	 	margin-bottom: 5px;
+	 }
+	 .selecionado{
+	 	background-color:#FFFF00;
+	 }
+	</style>
+		<script src="libs/angularjs/angular.min.js">
+
+		</script>
+		<script src="app.js"></script>
+		<script src="services/agendaService.js"></script>
+		<script src="controllers/agendaController.js"></script>
+			<script type="text/javascript">
+		angular.module("myApp", []);
+		angular.module("listaProfessores").controller("listaProfessoresController", function($scope){
+			$scope.app = "Lista Professores";
+			$scope.professores = [
+								{id:"", nome: ""},
+
+			];
+			
+				
+			];
+			$scope.adicionarProfessores = function (fetchAllProfessor) {
+
+
+				$scope.professores.push(angular.copy(professores)); // cppia para a lista
+
+
+			};
+
+
+			};
+		});
+	</script>
+	</head>
+	<body class="ng-cloak">
+		<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top"> 
+		<nav class="navbar navbar-default navbar-fixed-top">  
+			<div class="container-fluid">
+				<div class="navbar-header"> 
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false"> 
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="icon-bar"></span> </button> 
+					<a class="navbar-brand" href="index.html">Home</a>
+		 		</div>
+		  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6"> 
+		  			<ul class="nav navbar-nav"> 
+		  				<li><a href="coord.html">Coordenador</a></li>
+		  				<li><a href="prof.html">Professores</a></li>
+		   				<li><a href="disc.html">Disciplinas</a></li>
+		   				<li><a href="fases.html">Fases</a></li>
+		   				<li><a href="turmas.html">Turmas</a></li>
+		   				<li class="active"><a href="agenda.html">Agenda</a></li>
+		   		     </ul> 
+		     	</div> 
+		    </div>
+        </nav> 
+    </div>
+		<div class="jumbotron" class="generic-container" ng-controller="AgendaController as ctrl">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">Registro de Agenda </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                      A SER IMPLEMENTADO
+                      <div class="row">
+                          <div class="form-actions floatRight">
+                           <select class= "form-control" ng-model="professor" ng-options="professor for operadora in operadoras">
+
+							<option value=""> Selecione um Professor </option>
+												
+							</select>
+							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
+
+							<option value=""> Selecione uma Disciplina </option>
+												
+							</select>
+							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
+
+							<option value=""> Selecione um Periodo </option>
+												
+							</select>
+							
+                              <input type="submit"  value="{{!ctrl.Agenda.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar Formulario</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">Lista de Agendas </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>ID.</th>
+                              <th>Nome</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.Agendaes">
+                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.nome"></span></td>
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remover</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+	</body>
+</html>
