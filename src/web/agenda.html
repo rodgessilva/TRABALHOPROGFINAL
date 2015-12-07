@@ -1,4 +1,4 @@
-<html ng-app="myApp">
+ <html ng-app="myApp">
 	<head>
 		<title>Trabalho Habibs - Agenda</title>
 		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
@@ -24,9 +24,13 @@
 		<script src="libs/angularjs/angular.min.js"></script>
 		<script src="app.js"></script>
 		<script src="services/agendaService.js"></script>
-		<script src="controllers/agendaController.js"></script>
-				<script src="services/professorService.js"></script>
+    <script src="services/professorService.js"></script>
+    <script src="services/disciplinaService.js"></script>
+    <script src="services/fasesService.js"></script>
+		<script src="controllers/agendaController.js"></script>			
 		<script src="controllers/professorController.js"></script>
+    <script src="controllers/disciplinaController.js"></script>
+    <script src="controllers/fasesController.js"></script>
 	</head>
 	<body class="ng-cloak">
 		<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top"> 
@@ -59,24 +63,31 @@
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       A SER IMPLEMENTADO
                       <div class="row">
-                          <div class="form-actions floatRight">
-                            <select class= "form-control" ng-model="ListaProfessores.professor" ng-options="professor.nome for professor in professores">
-
-							<option value=""> Selecione um Professor </option>
-												
-							</select>
+                          <div class="form-actions floatRight" ng-controller="professorController as profCtrl">
+                            <select class= "form-control">
+                              	<option value=""> Selecione um Professor </option>
+                                <option ng-repeat="prof in profCtrl.professores" value="{{prof.id}}"> {{prof.nome}} </option>
+                            </select> 
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-actions floatRight" ng-controller="DisciplinasController as discCtrl">
+                            <select class= "form-control">
+                                <option value=""> Selecione uma Disciplina </option>
+                                <option ng-repeat="disc in discCtrl.Disciplinases" value="{{disc.id}}"> {{disc.nome}} </option>
+                            </select> 
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-actions floatRight" ng-controller="fasesController as fasesCtrl">
+                            <select class= "form-control">
+                                <option value=""> Selecione uma Fase </option>
+                                <option ng-repeat="fase in fasesCtrl.Faseses" value="{{fase.id}}"> {{fase.descricao}} </option>
+                            </select>
+                          </div>
+                      </div>
 						
 							
-							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
-
-							<option value=""> Selecione uma Disciplina </option>
-												
-							</select>
-							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
-
-							<option value=""> Selecione um Periodo </option>
-												
-							</select>
 							
                               <input type="submit"  value="{{!ctrl.Agenda.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar Formulario</button>
