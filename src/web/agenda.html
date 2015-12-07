@@ -61,7 +61,7 @@
               <div class="panel-heading"><span class="lead">Registro de Agenda </span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      A SER IMPLEMENTADO
+                      
                       <div class="row">
                           <div class="form-actions floatRight" ng-controller="professorController as profCtrl">
                             <select class= "form-control">
@@ -86,7 +86,19 @@
                             </select>
                           </div>
                       </div>
-						
+						<div class="row">
+                          <div class="form-actions floatRight" ng-controller="PeriodoController as agendaCtrl">
+                            <select class= "form-control">
+                                <option value=""> Selecione um dia da Semana</option>
+                                <option value="segunda">Segunda</option>
+                                <option value="segunda">Terça</option>
+                                <option value="segunda">Quarta</option>
+                                <option value="segunda">Quinta</option>
+                                <option value="segunda">Sexta</option>
+                                <!--  <option ng-repeat="fase in fasesCtrl.Faseses" value="{{fase.id}}"> {{fase.descricao}} </option>-->
+                            </select>
+                          </div>
+                      </div>
 							
 							
                               <input type="submit"  value="{{!ctrl.Agenda.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -123,27 +135,7 @@
       </div>
       
       
-      <div class="panel-heading"><span class="lead">Lista de Professores </span></div>
-              <div class="tablecontainer">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr>
-                              <th>ID.</th>
-                              <th>Nome</th>
-                              <th width="20%"></th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr ng-repeat="u in ctrl.professores">
-                              <td><span ng-bind="u.id"></span></td>
-                              <td><span ng-bind="u.nome"></span></td>
-                              <td>
-                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remover</button>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
+
           </div>
 	</body>
 </html>
