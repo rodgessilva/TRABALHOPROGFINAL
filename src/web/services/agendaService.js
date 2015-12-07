@@ -1,7 +1,7 @@
 'use strict';
  
 App.factory('AgendaService', ['$http', '$q', function($http, $q){
-	
+ 
     return {
          
             fetchAllAgenda: function() {
@@ -16,18 +16,7 @@ App.factory('AgendaService', ['$http', '$q', function($http, $q){
                                     }
                             );
             },
-            fetchAllProfessor: function() {
-                return $http.get('http://localhost:8080/professor')
-                        .then(
-                                function(response){
-                                    return response.data;
-                                }, 
-                                function(errResponse){
-                                    console.error('Error while fetching users');
-                                    return $q.reject(errResponse);
-                                }
-                        );
-        },
+             
             createAgenda: function(Agenda){
                     return $http.post('http://localhost:8080/agenda/', Agenda)
                             .then(

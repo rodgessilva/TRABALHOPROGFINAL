@@ -25,8 +25,9 @@
 		<script src="app.js"></script>
 		<script src="services/agendaService.js"></script>
 		<script src="controllers/agendaController.js"></script>
-				<script src="services/professorService.js"></script>
-		<script src="controllers/professorController.js"></script>
+		<script type="text/javascript">
+	
+	</script>
 	</head>
 	<body class="ng-cloak">
 		<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top"> 
@@ -56,10 +57,34 @@
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Registro de Agenda </span></div>
               <div class="formcontainer">
-                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                                   </form>
+                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       A SER IMPLEMENTADO
                       <div class="row">
                           <div class="form-actions floatRight">
+                          
+                           <select class= "form-control" ng-model="ListaProfessores.professor" ng-options="professor.nome for professor in professores">
+
+							<option value=""> Selecione um Professor </option>
+												
+							</select>
+						
+							
+							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
+
+							<option value=""> Selecione uma Disciplina </option>
+												
+							</select>
+							<select class= "form-control" ng-model="operadoras" ng-options="operadora.nome for operadora in operadoras">
+
+							<option value=""> Selecione um Periodo </option>
+												
+							</select>
+							
+                  
+                          
+                    
+
                               <input type="submit"  value="{{!ctrl.Agenda.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Limpar Formulario</button>
                           </div>
@@ -92,29 +117,5 @@
               </div>
           </div>
       </div>
-      
-      
-      <div class="panel-heading"><span class="lead">Lista de Professores </span></div>
-              <div class="tablecontainer">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr>
-                              <th>ID.</th>
-                              <th>Nome</th>
-                              <th width="20%"></th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr ng-repeat="u in ctrl.professores">
-                              <td><span ng-bind="u.id"></span></td>
-                              <td><span ng-bind="u.nome"></span></td>
-                              <td>
-                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remover</button>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
 	</body>
 </html>
